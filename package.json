@@ -1,0 +1,20 @@
+{
+  "name": "nodemaileremail",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kaushik",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "nodemailer": "^6.1.1",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "nodemon": "^1.19.0",
+    "path": "^0.12.7",
+    "xoauth2": "^1.2.0"
+  }
+}
