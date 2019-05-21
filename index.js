@@ -66,11 +66,44 @@ app.post('/sendEmail', (req, res) => {
 		}
 		console.log('Message sent: %s', info.messageId);
 		console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-
-		// res.send({
-		//   Success: config.messages.success
-		// });
 	});
+	res.send({
+		Success: config.messages.success
+	});
+});
+
+app.post('/sendMail', (req, res) => {
+	const output = `
+  <p>You have a new contact request</p>
+  <h3>Contact Details</h3>
+  <ul>  
+    <li>Name: ${req.body.name}</li>
+    <li>Company: ${req.body.company}</li>
+    <li>Email: ${req.body.email}</li>
+    <li>Phone: ${req.body.phone}</li>
+  </ul>
+  <h3>Message</h3>
+  <p>${req.body.message}</p>
+`;
+	var api_key = config.mailgun.api_key;
+	var domain = config.mailgun.sandbox;
+	var mailgun = require('mailgun-js')({
+		apiKey: api_key,
+		domain: domain
+	});
+
+	var data = {
+		from: config.mailOptions.from,
+		to: config.mailOptions.from,
+		subject: 'Hello',
+		text: 'There is a new company request!',
+		html: output
+	};
+
+	mailgun.messages().send(data, function (error, req) {
+		console.log(req);
+	});
+
 	res.send({
 		Success: config.messages.success
 	});

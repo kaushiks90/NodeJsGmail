@@ -1,10 +1,11 @@
 const keys = require('./keys')
-
 const opts = {
     from: keys.from,
     to: keys.to,
     password: keys.password,
     host: keys.host,
+    api: keys.mailgun_api_key,
+    sandbox: keys.mailgun_sandbox
 };
 
 const config = {
@@ -26,6 +27,10 @@ const config = {
     },
     messages: {
         success: "Email has been sent"
+    },
+    mailgun: {
+        api_key: opts.api,
+        sandbox: opts.sandbox
     }
 
 }
