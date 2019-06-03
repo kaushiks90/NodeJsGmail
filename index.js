@@ -3,8 +3,10 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const path = require('path');
 const config = require('./config/config');
-var cors = require('cors');
+const cors = require('cors');
 const app = express();
+const axios = require('axios');
+const circularJson = require('circular-json');
 
 //Cors Middleware
 app.use(cors());
@@ -26,6 +28,8 @@ app.get('/download', (req, res) => {
 	var resume = path.join(__dirname, 'public', 'Resume.docx');
 	res.download(resume);
 });
+
+
 
 app.post('/sendEmail', (req, res) => {
 	const output = `
@@ -109,5 +113,5 @@ app.post('/sendMail', (req, res) => {
 	});
 });
 
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
